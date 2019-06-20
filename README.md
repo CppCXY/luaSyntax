@@ -72,8 +72,9 @@
     * 使用装饰器
     ```lua
     require "namespace"
+    require "decorator.TestTime"
     _ENV=namespace "test"
-    using_namespace "decorator.TestTime"
+    using_namespace "decorator"
 
     __TestTime__()
     ---@param count number
