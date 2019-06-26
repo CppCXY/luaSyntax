@@ -1,13 +1,21 @@
-require "decorator.TestTime"
+require "luaSyntax.init"
+
 _ENV=namespace "test"
 using_namespace "decorator"
-__TestTime__();
----@param count number
-function FOR_TEST(count)
-	local t={}
-	for i=1,count do
-		t[i]=i
-	end
+
+
+__TestTime__	()
+__Deprecated__	(" Please use new function say")
+__NamedArgs__	(
+	PARAM(1,"text","你谁啊")
+)
+function speak(text)
+	print(text)
 end
 
-FOR_TEST(999999)
+speak()
+
+
+
+
+

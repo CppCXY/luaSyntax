@@ -51,20 +51,19 @@ local __nsIndex=function (self,key )
     return nil
 end
 --装饰器表
-local decorator={value=nil}
+local decorator={}
 
 local __nsNewIndex=function(self,key,value)
     local meta=self.__metaTable
     local localNamespace=meta.__nsTable
-    local mydecorator=decorator.value
-    rawset(localNamespace,key,
-    mydecorator
-    and 
-    mydecorator(value,key) 
-    or
-    value)
+
+    for i=#decorator,1,-1 do
+        value=decorator[i](value,key)
+    end
+
+    rawset(localNamespace,key,value)
     clearAccelarate(self,key)
-    decorator.value=nil
+    decorator=(#decorator~=0) and {} or decorator
 end
 
 
@@ -107,7 +106,7 @@ local function namespace(nsName)
     end
     
     meta.__decorator__=function()
-        decorator.value=__decorator__impletment
+        table.insert(decorator,__decorator__impletment)
     end
 
     for key,value in pairs(namespace_function_table) do
@@ -157,7 +156,7 @@ end
 
 __decorator__impletment=function(newDecorator)
     return function(...)
-        decorator.value=newDecorator(...)
+        table.insert(decorator,newDecorator(...))
     end
 end
 

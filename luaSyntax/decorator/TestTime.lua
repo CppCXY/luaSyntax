@@ -1,9 +1,9 @@
-require "namespace"
+
 
 _ENV= namespace "decorator"
 
 __decorator__()
-function __TestTime__(params)
+function __TestTime__()
 	return function (luafunction,functionName)
 		return function(...)
 			local startTime=os.clock()
