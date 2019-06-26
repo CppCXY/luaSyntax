@@ -1,9 +1,15 @@
 # lua标准语法实现的新语法
 
+* 如何使用这个库?
+
+    ```lua
+    require "luaSyntax.init"
+    ```
+
 * 声明一个命名空间
 
     ```lua
-    require "namespace"
+    require "luaSyntax.init"
     _ENV=namespace "test"
     ```
 
@@ -13,7 +19,7 @@
     
     ```lua
     --文件 test
-    require "namespace"
+    require "luaSyntax.init"
     _ENV=namespace "test"
     a=123456
     --文件 test2
@@ -27,7 +33,7 @@
 
     ```lua
     --文件test
-    require "namespace"
+    require "luaSyntax.init"
     _ENV=namespace "test"
     var=996
     --文件test2
@@ -48,7 +54,7 @@
     声明一个装饰器
 
     ```lua
-    require "namespace"
+    require "luaSyntax.namespace"
 
     _ENV=namespace "decorator"
     --装饰器也用装饰器来声明
@@ -78,8 +84,8 @@
     * 使用装饰器
 
     ```lua
-    require "namespace"
-    require "decorator.TestTime"
+    require "luaSyntax.namespace"
+    require "luaSyntax.decorator.TestTime"
     _ENV=namespace "test"
     using_namespace "decorator"
 
@@ -124,7 +130,7 @@
     --people使用第一个参数，text被传入具名参数
     speak("laozi",ARG.text("hahahaha"))
     ```
-    
+
     PARAM 这是一个函数，第一个参数是对应的参数位置，第二个参数是具名时候的名字，第三个参数是默认值。只能1对1，不能1对多想要1对多自己实现去。
 
 * 目前就写到这里
